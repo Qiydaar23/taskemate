@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import TaskList
 from .form import TaskForm
+from django.contrib import messages
 
 
 def todolist(request):
@@ -9,6 +10,7 @@ def todolist(request):
         form = TaskForm(request.POST or None)
         if form.is_valid():
             form.save()
+        messages.success(request, ("A New Task Has Been Added!"))    
         return redirect('todolist')    
     else:    
         all_tasks = TaskList.objects.all()
@@ -25,3 +27,9 @@ def about(request):
         'welcome_text': "welcome to About "
     }
     return render(request, 'about.html', context)
+
+def delete_task(request, task_id):
+    task = TaskList.objects.get(pk=task_id)
+    task.delete()
+    
+    return redirect('todolist')

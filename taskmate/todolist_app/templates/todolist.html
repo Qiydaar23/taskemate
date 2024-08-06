@@ -1,17 +1,24 @@
 {% extends 'base.html' %} 
-{% block title%}
-    <title>Todo List Manager -Taskmate</title>
+{% block title %}
+    <title>Todo List Manager - Taskmate</title>
 {% endblock %}
-{% block content%}
+{% block content %}
 <div class="container">
-<br> 
-<form method="POST">
-     {% csrf_token %}
-    <div class="mb-3">
-      <input type="text" class="form-control" placeholder="Add a new Task" name="task">
-    </div>
-    <button type="submit" class="btn btn-primary">Add task</button>
-  </form>
+    <br> 
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>    
+            </div>    
+        {% endfor %}
+    {% endif %}
+    <form method="POST" class="row">
+        {% csrf_token %}  
+        <label class="col-lg-4"> Your Daily todo List</label>
+        <input type="text" class="form-control col-lg-6" placeholder="Add a new Task here...." name="task">
+        <button type="submit" class="btn btn-primary col-lg-2">Add task</button>
+    </form>
     <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
@@ -22,22 +29,24 @@
             </tr>    
         </thead>    
         <tbody>
-        {% for obj in all_tasks%}
-
-             {% if obj.done %}
-                <tr class="table-success">
-                    <td scope="row">{{obj.task}}</td>
-                    <td>Completed</td>
-                    <td>dd</td>
-                    <td>gg</td>
-                </tr> 
-            </tr>
-            {% else %}   
-        <td scope="row">{{obj.task}}</td>
-        <td>Not completed</td>
-        <td>dd</td>
-        <td>gg</td>
-        {% endif %}
-    </tr>     
-{% endfor %}    
-{% endblock content%}
+            {% if all_tasks %}    
+                {% for obj in all_tasks %}
+                    <tr class="{% if obj.done %}table-success{% endif %}">
+                        <td scope="row">{{ obj.task }}</td>
+                        <td>{{ obj.done|yesno:"Completed,Not completed" }}</td>
+                        <td>Edit</td>
+                        <td><a href="{% url 'delete_task' obj.id %}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td scope="row">{{ obj.task }}</td>
+                        <td>Not completed</td>
+                        <td>Edit</td>
+                        <td><a href="{% url 'delete_task' obj.id %}">Delete</a></td>
+                </tr>
+            {% endif %}    
+        </tbody>     
+    </table>           
+</div>
+{% endblock %}
