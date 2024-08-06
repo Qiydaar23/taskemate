@@ -3,5 +3,41 @@
     <title>Todo List Manager -Taskmate</title>
 {% endblock %}
 {% block content%}
-    {{all_tasks}}
+<div class="container">
+<br> 
+<form method="POST">
+     {% csrf_token %}
+    <div class="mb-3">
+      <input type="text" class="form-control" placeholder="Add a new Task" name="task">
+    </div>
+    <button type="submit" class="btn btn-primary">Add task</button>
+  </form>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th scope='col'>Task</th>
+                <th scope='col'>Done</th>
+                <th scope='col'>Edit</th>
+                <th scope='col'>Delete</th>
+            </tr>    
+        </thead>    
+        <tbody>
+        {% for obj in all_tasks%}
+
+             {% if obj.done %}
+                <tr class="table-success">
+                    <td scope="row">{{obj.task}}</td>
+                    <td>Completed</td>
+                    <td>dd</td>
+                    <td>gg</td>
+                </tr> 
+            </tr>
+            {% else %}   
+        <td scope="row">{{obj.task}}</td>
+        <td>Not completed</td>
+        <td>dd</td>
+        <td>gg</td>
+        {% endif %}
+    </tr>     
+{% endfor %}    
 {% endblock content%}
