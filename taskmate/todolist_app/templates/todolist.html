@@ -34,7 +34,7 @@
                     <tr class="{% if obj.done %}table-success{% endif %}">
                         <td scope="row">{{ obj.task }}</td>
                         <td>{{ obj.done|yesno:"Completed,Not completed" }}</td>
-                        <td>Edit</td>
+                        <td><a href="{% url 'edit_task' obj.id %}">Edit</td>
                         <td><a href="{% url 'delete_task' obj.id %}">Delete</a></td>
                     </tr>
                 {% endfor %}
@@ -42,7 +42,7 @@
                 <tr>
                     <td scope="row">{{ obj.task }}</td>
                         <td>Not completed</td>
-                        <td>Edit</td>
+                        <td><a href="{% url 'edit_task' obj.id %}">Edit</td>
                         <td><a href="{% url 'delete_task' obj.id %}">Delete</a></td>
                 </tr>
             {% endif %}    
