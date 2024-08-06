@@ -1,12 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import TaskList
 
 
 def todolist(request):
-    context = {
-        'welcome_text': "welcome to Todo List App"
-    }
-    return render(request, 'todolist.html', context)
+    all_tasks = TaskList.objects.all()
+ 
+    return render(request, 'todolist.html', {'all_tasks': all_tasks})
 
 def contact(request):
     context = {
