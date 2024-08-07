@@ -10,6 +10,7 @@
             {% csrf_token %}  
             <label class="col-lg-4"></label>
             <input type="text" class="form-control col-lg-6" placeholder="{{task_obj.task}}" name="task" value="{{task_obj.task}}">
+            <input type="hidden"  name="done" value="{{task_obj.done}}">
             <button type="submit" class="btn btn-primary col-lg-2">Update Task</button>
         </form>
     </div>
