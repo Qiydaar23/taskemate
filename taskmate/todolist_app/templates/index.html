@@ -8,17 +8,23 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-lg-4">
-                <img src="{% static 'images/notes.avif' %}" alt="notes" width="360" height="250" />
+                <img src="{% static 'images/notes.avif' %}" alt="notes" width="360" height="250" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"/>
                 <button> <a href="{% url 'todolist' %}" > To do List</a></button>
             </div>
             <div class="col-lg-4">
-                <img src="{% static 'images/contact.avif' %}" alt="" width="360" height="250"/>
+                <img src="{% static 'images/contact.avif' %}" alt="" width="360" height="250" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"/>
                 <button> <a href="{% url 'contact'%}" >Contact us</a></button>
             </div>
             <div class="col-lg-4">
-                <img src="{% static 'images/aboutus.webp' %}" alt="" width="360" height="250"/>
+                <img src="{% static 'images/aboutus.webp' %}" alt="" width="360" height="250" class="shadow-lg p-3 mb-5 bg-body-tertiary rounded"/>
                 <button> <a href="{% url 'about' %}" > About us</a></button>
             </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6 offset-md-3">
+            <p><del>Welcome to an easy light weight platform to keep you on track of you TASK.</del></p>
+            <p>This app was created to help remind you of your goals & help you organize task by allowing you to <mark>edit</mark> your task <mark>delete</mark> or even <mark>Add more</mark>.</p>
+        </div>
         </div>
     </div>
 {% endblock content%}

@@ -24,4 +24,5 @@ urlpatterns = [
     path('contact/', todolist_views.contact, name='contact'),
     path('about/', todolist_views.about, name='about'),
     path('', todolist_views.index, name='index'),
+    path('account/', include('users_app.urls')),
 ]
