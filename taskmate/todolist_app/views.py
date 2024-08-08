@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 
+def index(request):
+    return render(request,'index.html')
+
 def todolist(request):
     if request.method =="POST":
         form = TaskForm(request.POST or None)
