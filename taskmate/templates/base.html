@@ -31,6 +31,21 @@
             </ul>
           </div>
         </div>
+        {% if user.is_authenticated %}
+          <div class="form-inline my-2 my-lg-0">
+            <div class="p-2 bg-dark text-white">{{user.username}}</div>
+            <a href="{% url 'logout' %}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+            </a>
+          </div>  
+        {% else %}
+        <a href="{% url 'register' %}">
+          <button class="btn btn-success mr-2 my-2 my-sm-0" type="submit">Register</button>
+          </a>
+          <a href="{% url 'login' %}">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button>
+            </a>
+        {% endif %}
       </nav>
   </head>
   <body class="bg-body-secondary">

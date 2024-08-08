@@ -11,3 +11,4 @@ def register(request):
             return redirect('register')
     register_form = CustomRegisterForm()
     return render(request, 'login.html', {'register_form': register_form})
+

@@ -33,7 +33,13 @@
             {% if all_tasks %}    
                 {% for obj in all_tasks %}
                     <tr class="{% if obj.done %}table-success{% endif %}">
-                        <td scope="row">{{ obj.task }}</td>
+                        <td scope="row">
+                            {% if obj.done %}
+                                <del>{{ obj.task }}</del>
+                            {% else %}
+                                {{ obj.task }}
+                            {% endif %}
+                        </td>
                         <td>{{ obj.done|yesno:"Completed,Not completed" }}</td>
                         <td>
                             {% if obj.done %}
@@ -54,8 +60,6 @@
         </tbody>     
     </table>     
 
-
-
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
           <li class="page-item ">
@@ -72,10 +76,6 @@
             <a class="page-link" href="?pg={{ all_tasks.paginator.num_pages }}">>></a>
           </li>
         </ul>
-      </nav>
-
-
-      
+    </nav>
 </div>
 {% endblock %}
-
